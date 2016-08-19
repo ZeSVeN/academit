@@ -26,7 +26,7 @@ for (var i = 0; i < list.length ; ++i) {
 console.log(evenSum);
 
 var numbers = [];
-for (var i = 1; i <= 100; ++i){
+for (i = 1; i <= 100; ++i){
     numbers.push(i);
 }
 
