@@ -6,7 +6,7 @@ WHERE CountryCode='RUS'
 ORDER BY Name;
 -- Города из Испании, Португалии и Греции отсортированные по имение в обратном порядке
 SELECT Name, CountryCode FROM city
-WHERE CountryCode='ESP' OR CountryCode='PRT' OR CountryCode='GRC'
+WHERE CountryCode IN ('ESP','PRT','GRC')
 ORDER BY Name desc;
 -- Города с населением от 300000 до 500000
 SELECT Name, Population FROM city
