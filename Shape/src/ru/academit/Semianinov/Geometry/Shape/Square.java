@@ -12,16 +12,20 @@ public class Square {
         return sideLength;
     }
 
-    double getHeight() {
+    public double getSideLength() {
         return sideLength;
     }
 
-    double getArea() {
-        return Math.pow(sideLength,2);
+    public double getHeight() {
+        return sideLength;
     }
 
-    double getPerimeter() {
-        return sideLength*4;
+    public double getArea() {
+        return Math.pow(sideLength, 2);
+    }
+
+    public double getPerimeter() {
+        return sideLength * 4;
     }
 
 }

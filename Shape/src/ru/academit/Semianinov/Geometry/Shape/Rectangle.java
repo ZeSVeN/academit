@@ -2,27 +2,27 @@ package ru.academit.Semianinov.Geometry.Shape;
 
 public class Rectangle {
 
-    private double firstSide;
-    private double secondSide;
+    private double width;
+    private double height;
 
     public Rectangle(double firstSide, double secondSide) {
-        this.firstSide = firstSide;
-        this.secondSide = secondSide;
+        this.width = firstSide;
+        this.height = secondSide;
     }
 
-    double getWidth() {
-        return Math.min(firstSide,secondSide);
+    public double getWidth() {
+        return Math.min(width, height);
     }
 
-    double getHeight() {
-        return Math.max(firstSide,secondSide);
+    public double getHeight() {
+        return Math.max(width, height);
     }
 
-    double getArea() {
-        return firstSide*secondSide;
+    public double getArea() {
+        return width * height;
     }
 
-    double getPerimeter() {
-        return firstSide*2+secondSide*2;
+    public double getPerimeter() {
+        return width * 2 + height * 2;
     }
 }
