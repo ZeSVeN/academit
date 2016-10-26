@@ -1,4 +1,4 @@
-package ru.academit.Semianinov.Range;
+package ru.academit.semianinov.range;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,8 +9,8 @@ public class Main {
         System.out.println("Длинна интервала " + range.calcLengthInterval());
         System.out.println(range.isInside(90));
 
-        Range range1 = new Range(50, 80);
-        Range range2 = new Range(30, 60);
+        Range range1 = new Range(1, 5);
+        Range range2 = new Range(4, 6);
 
         Range range3 = range1.getIntersectionInterval(range2);
 
@@ -20,10 +20,16 @@ public class Main {
             range3.print();
         }
 
-        Range range4 = range2.union(range1);
-        range4.print();
+        for (int[] e : range1.difference(range2)) {
+            for (int i = 0; i <= e.length - 1; ++i) {
+                System.out.println(e[i]);
+            }
+        }
 
-        Range range5 = range1.difference(range2);
-        range5.print();
+        for (int[] e : range1.union(range2)) {
+            for (int i = 0; i <= e.length - 1; ++i) {
+                System.out.println(e[i]);
+            }
+        }
     }
 }

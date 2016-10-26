@@ -1,4 +1,4 @@
-package ru.academit.Semianinov.Range;
+package ru.academit.semianinov.range;
 
 class Range {
 
@@ -27,28 +27,33 @@ class Range {
         if (isInside(range.from) && isInside(range.to)) {
             return new Range(range.from, range.to);
         }
-        if (isInside(range.from) && !isInside(range.to)) {
+        if (isInside(range.from)) {
             return new Range(range.from, this.to);
         }
-        if (!isInside(range.from) && isInside(range.to)) {
+        if (isInside(range.to)) {
             return new Range(this.from, range.to);
         }
         return new Range(this.from, this.to);
     }
 
-    public Range union(Range range) {
-        int max = getMaxNumber(range.to, this.to);
-        int min = getMinNumber(range.from, this.from);
-        return new Range(min, max);
+    public int[][] union(Range range) {
+        if (this.to >= range.from) {
+            int[][] array = {{this.from, range.to}, {0, 0}}; // Что делать, когда кусок один?
+            return array;
+        }
+        int[][] array = {{this.from, this.to}, {range.from, range.to}}; // Возвращаем два диапазона.
+        return array;
     }
 
-    public Range difference(Range range) {
+
+    public int[][] difference(Range range) {
         if (getIntersectionInterval(range) == null) {
-            return new Range(this.from, this.to);
+            int[][] array = {{this.from, this.to}, {0, 0}};
+            return array;
         }
-        int differenceEnd = getMaxNumber(this.to, range.to) - getMinNumber(this.to, range.to);
-        int differenceBegin = getMaxNumber(this.from, range.from) - getMinNumber(this.from, range.from);
-        return new Range(differenceBegin, differenceEnd);
+        Range intersection = getIntersectionInterval(range);
+        int[][] array = {{this.from, intersection.from}, {intersection.to, this.to}};
+        return array;
     }
 
     public int calcLengthInterval() {
