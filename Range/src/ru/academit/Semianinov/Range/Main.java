@@ -9,8 +9,8 @@ public class Main {
         System.out.println("Длинна интервала " + range.calcLengthInterval());
         System.out.println(range.isInside(90));
 
-        Range range1 = new Range(1, 5);
-        Range range2 = new Range(4, 6);
+        Range range1 = new Range(5, 6);
+        Range range2 = new Range(4, 8);
 
         Range range3 = range1.getIntersectionInterval(range2);
 
@@ -20,16 +20,8 @@ public class Main {
             range3.print();
         }
 
-        for (int[] e : range1.difference(range2)) {
-            for (int i = 0; i <= e.length - 1; ++i) {
-                System.out.println(e[i]);
-            }
-        }
+        Range[] range4 = range1.union(range2);
+        Range[] range5 = range1.difference(range2);
 
-        for (int[] e : range1.union(range2)) {
-            for (int i = 0; i <= e.length - 1; ++i) {
-                System.out.println(e[i]);
-            }
-        }
     }
 }

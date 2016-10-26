@@ -2,11 +2,13 @@ package ru.academit.semianinov.range;
 
 class Range {
 
-    private int from;
-    private int to;
+    private double from;
+    private double to;
 
-    public Range(int firstNumber, int secondNumber) {
+    public Range(double firstNumber, double secondNumber) {
+
         boolean isCorrectOrder = firstNumber < secondNumber;
+
         if (isCorrectOrder) {
             from = firstNumber;
             to = secondNumber;
@@ -16,7 +18,7 @@ class Range {
         }
     }
 
-    public boolean isInside(int number) {
+    public boolean isInside(double number) {
         return number >= from && number <= to;
     }
 
@@ -36,39 +38,49 @@ class Range {
         return new Range(this.from, this.to);
     }
 
-    public int[][] union(Range range) {
-        if (this.to >= range.from) {
-            int[][] array = {{this.from, range.to}, {0, 0}}; // Что делать, когда кусок один?
-            return array;
+    public Range[] union(Range range) {
+
+        if ((getIntersectionInterval(range) == null)) {
+            return new Range[]{this, range};
         }
-        int[][] array = {{this.from, this.to}, {range.from, range.to}}; // Возвращаем два диапазона.
-        return array;
+        return new Range[]{new Range(getMinNumber(this.from, range.from), getMaxNumber(this.to, range.to))};
     }
 
 
-    public int[][] difference(Range range) {
-        if (getIntersectionInterval(range) == null) {
-            int[][] array = {{this.from, this.to}, {0, 0}};
-            return array;
+    public Range[] difference(Range range) {
+
+        if (this.getIntersectionInterval(range) == null) {
+            return new Range[]{this};
         }
-        Range intersection = getIntersectionInterval(range);
-        int[][] array = {{this.from, intersection.from}, {intersection.to, this.to}};
-        return array;
+
+        if (isInside(range.from) && isInside(range.to)) {
+            return new Range[]{new Range(this.from, range.from), new Range(range.to, this.to)};
+        }
+
+        if (isInside(range.from)) {
+            return new Range[]{new Range(this.from, range.from)};
+        }
+
+        if (isInside(range.to)) {
+            return new Range[]{new Range(range.to, this.to)};
+        }
+
+        return new Range[0];
     }
 
-    public int calcLengthInterval() {
+    public double calcLengthInterval() {
         return to - from;
     }
 
-    private static int getMaxNumber(int firstNumber, int secondNumber) {
+    private static double getMaxNumber(double firstNumber, double secondNumber) {
         return (firstNumber > secondNumber) ? firstNumber : secondNumber;
     }
 
-    private static int getMinNumber(int firstNumber, int secondNumber) {
+    private static double getMinNumber(double firstNumber, double secondNumber) {
         return (firstNumber < secondNumber) ? firstNumber : secondNumber;
     }
 
     public void print() {
-        System.out.printf("(%d %d)%n", from, to);
+        System.out.printf("(%f %f)%n", from, to);
     }
 }
