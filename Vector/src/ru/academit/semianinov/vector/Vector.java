@@ -1,5 +1,7 @@
 package ru.academit.semianinov.vector;
 
+import java.util.ArrayList;
+
 class Vector {
 
     private double[] array;
@@ -15,18 +17,12 @@ class Vector {
 
     public Vector(Vector vector) {
 
-        this(vector.getSize());
-
-        System.arraycopy(vector.array, 0, this.array, 0, vector.getSize());
+        this(vector.array);
     }
 
     public Vector(double[] array) {
 
-        this(array.length);
-
-        for (int i = 0; i < this.array.length; ++i) {
-            this.array[i] = array[i];
-        }
+        this(array.length, array);
     }
 
     public Vector(int size, double[] array) {
