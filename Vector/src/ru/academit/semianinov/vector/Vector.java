@@ -3,7 +3,6 @@ package ru.academit.semianinov.vector;
 class Vector {
 
     private double[] array;
-    private int size;
 
     public Vector(int size) {
 
@@ -11,38 +10,31 @@ class Vector {
             throw new IllegalArgumentException(Integer.toString(size));
         }
 
-        this.size = size;
         this.array = new double[size];
-        for (int i = 0; i <= this.size - 1; ++i) {
-            this.array[i] = 0;
-        }
     }
 
     public Vector(Vector vector) {
 
-        this.size = vector.getSize();
-        this.array = new double[size];
+        this.array = new double[vector.getSize()];
 
         System.arraycopy(vector.array, 0, this.array, 0, vector.getSize());
     }
 
     public Vector(double[] array) {
 
-        size = array.length;
-        this.array = new double[size];
+        this.array = new double[array.length];
 
-        for (int i = 0; i <= size - 1; ++i) {
+        for (int i = 0; i < this.array.length; ++i) {
             this.array[i] = array[i];
         }
     }
 
     public Vector(int size, double[] array) {
 
-        this.size = size;
         this.array = new double[size];
 
-        for (int i = 0; i <= this.size - 1; ++i) {
-            if (i >= (array.length - 1)) {
+        for (int i = 0; i < this.array.length; ++i) {
+            if (i >= (array.length)) {
                 this.array[i] = 0;
                 continue;
             }
@@ -51,7 +43,7 @@ class Vector {
     }
 
     public int getSize() {
-        return this.size;
+        return array.length;
     }
 
     public void toString1() {
