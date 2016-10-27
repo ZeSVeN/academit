@@ -15,14 +15,14 @@ class Vector {
 
     public Vector(Vector vector) {
 
-        this.array = new double[vector.getSize()];
+        this(vector.getSize());
 
         System.arraycopy(vector.array, 0, this.array, 0, vector.getSize());
     }
 
     public Vector(double[] array) {
 
-        this.array = new double[array.length];
+        this(array.length);
 
         for (int i = 0; i < this.array.length; ++i) {
             this.array[i] = array[i];
@@ -31,7 +31,7 @@ class Vector {
 
     public Vector(int size, double[] array) {
 
-        this.array = new double[size];
+        this(size);
 
         for (int i = 0; i < this.array.length; ++i) {
             if (i >= (array.length)) {
@@ -46,7 +46,7 @@ class Vector {
         return array.length;
     }
 
-    public void toString1() {
+    public String toString() {
 
         StringBuilder string = new StringBuilder();
 
@@ -58,6 +58,6 @@ class Vector {
         string.deleteCharAt(string.length() - 1);
         string.append(" }");
 
-        System.out.println(string.toString());
+        return string.toString();
     }
 }
