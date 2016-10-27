@@ -40,8 +40,8 @@ class Range {
 
     public Range[] union(Range range) {
 
-        if ((getIntersectionInterval(range) == null)) {
-            return new Range[]{new Range(this.from,this.to), range};
+        if (this.getIntersectionInterval(range) == null) {
+            return new Range[]{new Range(this.from, this.to), new Range(range.from, range.to)};
         }
         return new Range[]{new Range(Math.min(this.from, range.from), Math.max(this.to, range.to))};
     }
@@ -50,7 +50,7 @@ class Range {
     public Range[] difference(Range range) {
 
         if (this.getIntersectionInterval(range) == null) {
-            return new Range[]{new Range(this.from,this.to)};
+            return new Range[]{new Range(this.from, this.to)};
         }
 
         if (isInside(range.from) && isInside(range.to)) {
