@@ -31,7 +31,6 @@ class Vector {
 
         for (int i = 0; i < this.array.length; ++i) {
             if (i >= (array.length)) {
-                this.array[i] = 0;
                 continue;
             }
             this.array[i] = array[i];
@@ -49,7 +48,7 @@ class Vector {
         string.append("{ ");
         for (double e : this.array) {
             string.append(e)
-                    .append(",");
+                    .append(", ");
         }
         string.deleteCharAt(string.length() - 1);
         string.append(" }");
