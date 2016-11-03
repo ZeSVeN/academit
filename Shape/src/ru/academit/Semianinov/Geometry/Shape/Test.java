@@ -1,15 +1,25 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
+import java.util.Collections;
+
 public class Test {
     public static void main(String[] args) {
 
-        Square square1 = new Square(4);
+        Shape square1 = new Square(4);
 
-        Triangle triangle = new Triangle(1, 2, 6, 5, 9, 0);
+        Shape triangle = new Triangle(1, 2, 6, 5, 9, 0);
 
-        Rectangle rectangle = new Rectangle(5, 6);
+        Shape rectangle = new Rectangle(5, 6);
 
-        Circle circle = new Circle(10);
+        Shape circle = new Circle(10);
 
+        System.out.println(square1.getArea());
+        System.out.println(triangle.getArea());
+        System.out.println(rectangle.getArea());
+        System.out.println(circle.getArea());
+
+        Collections.max(Shape, );
     }
+
+
 }

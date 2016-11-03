@@ -1,6 +1,6 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-public class Circle {
+public class Circle implements Shape {
 
     private double radius;
 
@@ -24,4 +24,12 @@ public class Circle {
         return 2 * Math.PI * radius;
     }
 
+    @Override
+    public int compareTo(Shape o) {
+        if (this.getArea() < o.getArea()) {
+            return -1;
+        } else if (this.getArea() > o.getArea()) {
+            return 1;
+        } else return 0;
+    }
 }

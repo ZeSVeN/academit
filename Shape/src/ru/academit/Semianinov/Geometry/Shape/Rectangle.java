@@ -1,6 +1,6 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-public class Rectangle {
+public class Rectangle implements Shape {
 
     private double width;
     private double height;
@@ -11,11 +11,11 @@ public class Rectangle {
     }
 
     public double getWidth() {
-        return Math.min(width, height);
+        return width;
     }
 
     public double getHeight() {
-        return Math.max(width, height);
+        return height;
     }
 
     public double getArea() {
@@ -24,5 +24,13 @@ public class Rectangle {
 
     public double getPerimeter() {
         return width * 2 + height * 2;
+    }
+
+    public int compareTo(Shape o) {
+        if (this.getArea() < o.getArea()) {
+            return -1;
+        } else if (this.getArea() > o.getArea()) {
+            return 1;
+        } else return 0;
     }
 }

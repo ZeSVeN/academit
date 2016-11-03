@@ -1,6 +1,6 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-public class Triangle {
+public class Triangle implements Shape {
 
     private double x1;
     private double y1;
@@ -67,5 +67,14 @@ public class Triangle {
     private static double getSideLength(double xSecond, double ySecond, double xFirst, double yFirst) {
         return Math.sqrt(Math.pow((xSecond - xFirst), 2) + Math.pow((ySecond - yFirst), 2));
     }
+
+    public int compareTo(Shape o) {
+        if (this.getArea() < o.getArea()) {
+            return -1;
+        } else if (this.getArea() > o.getArea()) {
+            return 1;
+        } else return 0;
+    }
+
 }
 
