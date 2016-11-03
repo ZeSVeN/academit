@@ -12,10 +12,6 @@ public class Square implements Shape {
         return sideLength;
     }
 
-    public double getSideLength() {
-        return sideLength;
-    }
-
     public double getHeight() {
         return sideLength;
     }
