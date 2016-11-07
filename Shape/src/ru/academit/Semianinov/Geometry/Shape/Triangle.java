@@ -68,13 +68,5 @@ public class Triangle implements Shape {
         return Math.sqrt(Math.pow((xSecond - xFirst), 2) + Math.pow((ySecond - yFirst), 2));
     }
 
-    public int compareTo(Shape o) {
-        if (this.getArea() < o.getArea()) {
-            return -1;
-        } else if (this.getArea() > o.getArea()) {
-            return 1;
-        } else return 0;
-    }
-
 }
 

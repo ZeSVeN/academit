@@ -1,8 +1,7 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
@@ -19,6 +18,8 @@ public class Test {
         System.out.println(triangle.getArea());
         System.out.println(rectangle.getArea());
         System.out.println(circle.getArea());
+
+        List<Shape>
     }
 
 

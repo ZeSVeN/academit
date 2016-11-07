@@ -25,12 +25,5 @@ public class Rectangle implements Shape {
     public double getPerimeter() {
         return width * 2 + height * 2;
     }
-
-    public int compareTo(Shape o) {
-        if (this.getArea() < o.getArea()) {
-            return -1;
-        } else if (this.getArea() > o.getArea()) {
-            return 1;
-        } else return 0;
-    }
 }
+

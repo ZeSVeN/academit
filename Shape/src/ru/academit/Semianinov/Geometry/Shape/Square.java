@@ -23,12 +23,4 @@ public class Square implements Shape {
     public double getPerimeter() {
         return sideLength * 4;
     }
-
-    public int compareTo(Shape o) {
-        if (this.getArea() < o.getArea()) {
-            return -1;
-        } else if (this.getArea() > o.getArea()) {
-            return 1;
-        } else return 0;
-    }
 }
