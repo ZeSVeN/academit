@@ -43,6 +43,8 @@ public class Circle implements Shape {
 
     @Override
     public int hashCode() {
-        return (int) (23 * radius);
+        final int prime = 23;
+        int hash = 1;
+        return hash * prime + (int) radius;
     }
 }

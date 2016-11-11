@@ -92,7 +92,15 @@ public class Triangle implements Shape {
 
     @Override
     public int hashCode() {
-        return (int) (23 * (x1 + x2 + x3 + y1 + y2 + y3));
+        final int prime = 23;
+        int hash = 1;
+        hash = hash * prime + (int) x1;
+        hash = hash * prime + (int) y1;
+        hash = hash * prime + (int) x2;
+        hash = hash * prime + (int) y2;
+        hash = hash * prime + (int) x3;
+        hash = hash * prime + (int) y3;
+        return hash;
     }
 }
 
