@@ -1,7 +1,5 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-import java.util.Objects;
-
 public class Triangle implements Shape {
 
     private double x1;
@@ -72,14 +70,7 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
-        return "Triangle{" +
-                "x1=" + x1 +
-                ", y1=" + y1 +
-                ", x2=" + x2 +
-                ", y2=" + y2 +
-                ", x3=" + x3 +
-                ", y3=" + y3 +
-                '}';
+        return String.format("Triangle { x1 = %.1f, y1 = %.1f, x2 = %.1f, y2 = %.1f, x3 = %.1f, y3= %.1f }", x1, y1, x2, y2, x3, y3);
     }
 
     @Override
@@ -87,21 +78,21 @@ public class Triangle implements Shape {
 
         if (this == o) return true;
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || o.getClass() != this.getClass()) return false;
 
         Triangle triangle = (Triangle) o;
 
-        return Double.compare(triangle.x1, x1) == 0 &&
-                Double.compare(triangle.y1, y1) == 0 &&
-                Double.compare(triangle.x2, x2) == 0 &&
-                Double.compare(triangle.y2, y2) == 0 &&
-                Double.compare(triangle.x3, x3) == 0 &&
-                Double.compare(triangle.y3, y3) == 0;
+        return x1 == triangle.x1 &&
+                x2 == triangle.x2 &&
+                x3 == triangle.x3 &&
+                y1 == triangle.y1 &&
+                y2 == triangle.y2 &&
+                y3 == triangle.y3;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x1, y1, x2, y2, x3, y3);
+        return (int) (23*(x1+x2+x3+y1+y2+y3));
     }
 }
 

@@ -1,7 +1,5 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-import java.util.Objects;
-
 public class Circle implements Shape {
 
     private double radius;
@@ -28,9 +26,7 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return "Circle{" +
-                "radius=" + radius +
-                '}';
+        return String.format("Circle { radius = %.1f }",radius);
     }
 
     @Override
@@ -38,15 +34,15 @@ public class Circle implements Shape {
 
         if (this == o) return true;
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || o.getClass() != this.getClass()) return false;
 
         Circle circle = (Circle) o;
 
-        return Double.compare(circle.radius, radius) == 0;
+        return circle.radius == radius;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(radius);
+        return (int) (23*radius);
     }
 }

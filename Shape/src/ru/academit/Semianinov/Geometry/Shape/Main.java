@@ -8,22 +8,20 @@ public class Main {
         Shape square1 = new Square(4);
         Shape triangle = new Triangle(1, 2, 6, 5, 9, 0);
         Shape rectangle = new Rectangle(5, 6);
-        Shape circle = new Circle(10);
+        Shape circle = new Circle(2);
         Shape triangle1 = new Triangle(6, 4, 6, 1, 5, 6);
         Shape circle1 = new Circle(20);
 
-        Shape[] test = {square1, triangle, rectangle, circle, triangle1, circle1};
+        Shape[] shapes = {square1, triangle, rectangle, circle, triangle1, circle1};
 
-        List<Shape> shapes = new ArrayList<>(Arrays.asList(test));
+        List<Shape> shapesList = new ArrayList<>(Arrays.asList(shapes));
 
-        Shape max = Collections.max(shapes, new AreaComparator());
+        Shape max = Collections.max(shapesList, new AreaComparator());
 
         System.out.println(max.toString());
 
-        Collections.sort(shapes, new PerimeterComparator());
+        Arrays.sort(shapes,new PerimeterComparator());
 
-        Shape secondArea = shapes.get(1);
-
-        System.out.println(secondArea.toString());
+        System.out.println(shapes[1].toString());
     }
 }

@@ -1,7 +1,5 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-import java.util.Objects;
-
 public class Rectangle implements Shape {
 
     private double width;
@@ -30,10 +28,7 @@ public class Rectangle implements Shape {
 
     @Override
     public String toString() {
-        return "Rectangle{" +
-                "width=" + width +
-                ", height=" + height +
-                '}';
+        return String.format("Rectangle { width = %.1f, height = %.1f }", width, height);
     }
 
     @Override
@@ -41,17 +36,16 @@ public class Rectangle implements Shape {
 
         if (this == o) return true;
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || o.getClass() != this.getClass()) return false;
 
         Rectangle rectangle = (Rectangle) o;
 
-        return Double.compare(rectangle.width, width) == 0 &&
-                Double.compare(rectangle.height, height) == 0;
+        return rectangle.width == width && rectangle.height == height;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(width, height);
+        return (int) (23*(width+height));
     }
 }
 

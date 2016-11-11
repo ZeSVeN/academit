@@ -1,7 +1,5 @@
 package ru.academit.Semianinov.Geometry.Shape;
 
-import java.util.Objects;
-
 public class Square implements Shape {
 
     private double sideLength;
@@ -28,9 +26,7 @@ public class Square implements Shape {
 
     @Override
     public String toString() {
-        return "Square{" +
-                "sideLength=" + sideLength +
-                '}';
+        return String.format("Square { sideLength = %.1f }",sideLength);
     }
 
     @Override
@@ -38,15 +34,15 @@ public class Square implements Shape {
 
         if (this == o) return true;
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || o.getClass() != this.getClass()) return false;
 
         Square square = (Square) o;
 
-        return Double.compare(square.sideLength, sideLength) == 0;
+        return square.sideLength == sideLength;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sideLength);
+        return (int) (23*sideLength);
     }
 }
