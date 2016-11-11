@@ -16,7 +16,7 @@ public class Square implements Shape {
         return sideLength;
     }
 
-    public double getArea() {
+    public double getPerimetr() {
         return Math.pow(sideLength, 2);
     }
 

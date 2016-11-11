@@ -16,7 +16,7 @@ public class Circle implements Shape {
         return 2 * radius;
     }
 
-    public double getArea() {
+    public double getPerimetr() {
         return Math.PI * Math.pow(radius, 2);
     }
 

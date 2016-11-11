@@ -32,7 +32,7 @@ public class Triangle implements Shape {
         return getMaxY() - getMinY();
     }
 
-    public double getArea() {
+    public double getPerimetr() {
 
         double halfPerimeter = getPerimeter() / 2;
 
