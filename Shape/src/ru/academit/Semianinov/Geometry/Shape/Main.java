@@ -18,12 +18,12 @@ public class Main {
 
         Shape max = Collections.max(shapes, new AreaComparator());
 
-        System.out.println(max);
+        System.out.println(max.toString());
 
-        Collections.sort(shapes, new PerimetrComparator());
+        Collections.sort(shapes, new PerimeterComparator());
 
         Shape secondArea = shapes.get(1);
 
-        System.out.println(secondArea);
+        System.out.println(secondArea.toString());
     }
 }

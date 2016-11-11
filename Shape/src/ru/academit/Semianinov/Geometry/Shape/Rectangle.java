@@ -18,7 +18,7 @@ public class Rectangle implements Shape {
         return height;
     }
 
-    public double getPerimetr() {
+    public double getArea() {
         return width * height;
     }
 
