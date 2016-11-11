@@ -45,7 +45,7 @@ public class Rectangle implements Shape {
 
     @Override
     public int hashCode() {
-        return (int) (23*(width+height));
+        return (int) (23 * (width + height));
     }
 }
 

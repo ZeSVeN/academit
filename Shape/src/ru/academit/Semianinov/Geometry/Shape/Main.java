@@ -20,7 +20,7 @@ public class Main {
 
         System.out.println(max.toString());
 
-        Arrays.sort(shapes,new PerimeterComparator());
+        Arrays.sort(shapes, new PerimeterComparator());
 
         System.out.println(shapes[1].toString());
     }

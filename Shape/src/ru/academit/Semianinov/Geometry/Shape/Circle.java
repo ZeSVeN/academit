@@ -26,7 +26,7 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Circle { radius = %.1f }",radius);
+        return String.format("Circle { radius = %.1f }", radius);
     }
 
     @Override
@@ -43,6 +43,6 @@ public class Circle implements Shape {
 
     @Override
     public int hashCode() {
-        return (int) (23*radius);
+        return (int) (23 * radius);
     }
 }

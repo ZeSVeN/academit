@@ -26,7 +26,7 @@ public class Square implements Shape {
 
     @Override
     public String toString() {
-        return String.format("Square { sideLength = %.1f }",sideLength);
+        return String.format("Square { sideLength = %.1f }", sideLength);
     }
 
     @Override
@@ -43,6 +43,6 @@ public class Square implements Shape {
 
     @Override
     public int hashCode() {
-        return (int) (23*sideLength);
+        return (int) (23 * sideLength);
     }
 }
