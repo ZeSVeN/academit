@@ -97,7 +97,7 @@ class Vector {
     }
 
     public double getValue(int index) {
-        if (array.length <= index) {
+        if (array.length <= Math.abs(index)) {
             throw new IndexOutOfBoundsException("Элемента с таким индексом не существует");
         }
         return array[index];
@@ -105,18 +105,26 @@ class Vector {
 
     public static Vector sum(Vector vector1, Vector vector2) {
 
-        if (vector1.getSize() < vector2.getSize()) {
-            vector1 = new Vector(vector2.getSize(), vector1.array);
-        } else if (vector1.getSize() > vector2.getSize()) {
-            vector2 = new Vector(vector1.getSize(), vector2.array);
-        }
+        int vectorSize = Math.max(vector1.getSize(), vector2.getSize());
 
-        Vector vector = new Vector(vector1.getSize());
+        Vector vector = new Vector(vectorSize);
 
-        for (int i = 0; i < vector.getSize(); ++i) {
-            vector.array[i] = vector1.array[i] + vector2.array[i];
-        }
-        return new Vector(vector);
+        vector.add(vector1);
+        vector.add(vector2);
+
+        return vector;
+    }
+
+    public static Vector subtraction(Vector vector1, Vector vector2) {
+
+        int vectorSize = Math.max(vector1.getSize(), vector2.getSize());
+
+        Vector vector = new Vector(vectorSize);
+
+        vector.add(vector1);
+        vector.remove(vector2);
+
+        return vector;
     }
 
     @Override
