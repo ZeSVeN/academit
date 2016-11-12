@@ -1,6 +1,7 @@
 package ru.academit.semianinov.vector;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
 
 class Vector {
 
@@ -91,6 +92,10 @@ class Vector {
         this.multiplication(-1);
     }
 
+    public double getLenght() {
+        return Math.abs(array[0] - array[array.length - 1]);
+    }
+
     public void setValue(int index, double value) {
         this.getValue(index);
         array[index] = value;
@@ -125,6 +130,16 @@ class Vector {
         vector.remove(vector2);
 
         return vector;
+    }
+
+    public static double scalarProduct(Vector vector1, Vector vector2) {
+
+        double result = 0;
+
+        for (int i = 0; i < Math.min(vector1.getSize(), vector2.getSize()); ++i) {
+            result = result + vector1.getValue(i) * vector2.getValue(i);
+        }
+        return result;
     }
 
     @Override
