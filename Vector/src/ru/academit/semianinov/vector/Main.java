@@ -25,7 +25,7 @@ public class Main {
 
         //vector1.remove(vector2);
 
-        vector1.setValue(vector1.getSize() - 1, 0);
+        vector1.setValue(10, 0);
         System.out.println(vector1);
         System.out.println(vector3);
         vector3.add(vector1);

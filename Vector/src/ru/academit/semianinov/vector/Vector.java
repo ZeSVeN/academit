@@ -58,7 +58,7 @@ class Vector {
     public void add(Vector vector) {
         if (this.getSize() < vector.getSize()) {
 
-            Vector tmp = new Vector(vector.getSize(),this.array);
+            Vector tmp = new Vector(vector.getSize(), this.array);
 
             this.array = tmp.array;
         }
@@ -92,10 +92,15 @@ class Vector {
     }
 
     public void setValue(int index, double value) {
+        this.getValue(index);
+        array[index] = value;
+    }
+
+    public double getValue(int index) {
         if (array.length <= index) {
             throw new IndexOutOfBoundsException("Элемента с таким индексом не существует");
         }
-        array[index] = value;
+        return array[index];
     }
 
     public static Vector sum(Vector vector1, Vector vector2) {
