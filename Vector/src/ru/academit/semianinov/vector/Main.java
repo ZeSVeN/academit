@@ -13,7 +13,7 @@ public class Main {
 
         Vector vector2 = new Vector(vector1);
 
-        vector2.setValue(0,1.00001);
+        vector2.setValue(0, 1.00001);
         System.out.println(vector1.equals(vector2));
 
         Vector vector3 = new Vector(10, array);
@@ -25,7 +25,7 @@ public class Main {
 
         vector1.remove(vector2);
 
-        vector1.setValue(vector1.getSize()-1, 0);
+        vector1.setValue(vector1.getSize() - 1, 0);
 
     }
 }
