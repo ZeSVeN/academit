@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HTML/HTML.iml" filepath="$PROJECT_DIR$/HTML/HTML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HashList/HashList.iml" filepath="$PROJECT_DIR$/HashList/HashList.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaScript/JavaScript.iml" filepath="$PROJECT_DIR$/JavaScript/JavaScript.iml" />
       <module fileurl="file://$PROJECT_DIR$/List/List.iml" filepath="$PROJECT_DIR$/List/List.iml" />
       <module fileurl="file://$PROJECT_DIR$/Matrix/Matrix.iml" filepath="$PROJECT_DIR$/Matrix/Matrix.iml" />
