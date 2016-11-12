@@ -89,6 +89,9 @@ class Vector {
     }
 
     public void setValue(int index, double value) {
+        if (array.length <= index) {
+            throw new IllegalArgumentException(Integer.toString(index));
+        }
         array[index] = value;
     }
 
