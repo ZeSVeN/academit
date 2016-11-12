@@ -29,10 +29,7 @@ class Vector {
 
         this(size);
 
-        for (int i = 0; i < this.array.length; ++i) {
-            if (i >= (array.length)) {
-                continue;
-            }
+        for (int i = 0; i < array.length; ++i) {
             this.array[i] = array[i];
         }
     }
@@ -46,10 +43,12 @@ class Vector {
         StringBuilder string = new StringBuilder();
 
         string.append("{ ");
+
         for (double e : this.array) {
             string.append(e)
                     .append(", ");
         }
+
         string.delete(string.length() - 2, string.length() - 1);
         string.append("}");
 
@@ -57,23 +56,29 @@ class Vector {
     }
 
     public void add(Vector vector) {
+        if (this.getSize() < vector.getSize()) {
 
-        int newSize = this.array.length + vector.getSize();
-        double[] newArray = new double[newSize];
+            Vector tmp = new Vector(vector.getSize(),this.array);
 
-        System.arraycopy(this.array, 0, newArray, 0, this.array.length);
-        System.arraycopy(vector.array, 0, newArray, this.array.length, vector.getSize());
+            this.array = tmp.array;
+        }
 
-        this.array = newArray;
+        for (int i = 0; i < vector.getSize(); ++i) {
+            this.array[i] = this.array[i] + vector.array[i];
+        }
     }
 
     public void remove(Vector vector) {
+        if (this.getSize() < vector.getSize()) {
 
-        int newSize = this.array.length - vector.getSize();
-        double[] newArray = new double[newSize];
+            Vector tmp = new Vector(vector.getSize(), this.array);
 
-        System.arraycopy(this.array, 0, newArray, 0, newSize);
-        this.array = newArray;
+            this.array = tmp.array;
+        }
+
+        for (int i = 0; i < vector.getSize(); ++i) {
+            this.array[i] = this.array[i] - vector.array[i];
+        }
     }
 
     public void multiplication(double number) {
@@ -82,22 +87,38 @@ class Vector {
         }
     }
 
-    public void revers() {
-        for (int i = 0; i < this.array.length; ++i) {
-            array[i] = array[i] * (-1);
-        }
+    public void reverse() {
+        this.multiplication(-1);
     }
 
     public void setValue(int index, double value) {
         if (array.length <= index) {
-            throw new IllegalArgumentException(Integer.toString(index));
+            throw new IndexOutOfBoundsException("Элемента с таким индексом не существует");
         }
         array[index] = value;
     }
 
+    public static Vector sum(Vector vector1, Vector vector2) {
+
+        if (vector1.getSize() < vector2.getSize()) {
+            vector1 = new Vector(vector2.getSize(), vector1.array);
+        } else if (vector1.getSize() > vector2.getSize()) {
+            vector2 = new Vector(vector1.getSize(), vector2.array);
+        }
+
+        Vector vector = new Vector(vector1.getSize());
+
+        for (int i = 0; i < vector.getSize(); ++i) {
+            vector.array[i] = vector1.array[i] + vector2.array[i];
+        }
+        return new Vector(vector);
+    }
+
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
 
         Vector vector = (Vector) o;

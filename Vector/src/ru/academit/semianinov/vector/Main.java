@@ -13,19 +13,25 @@ public class Main {
 
         Vector vector2 = new Vector(vector1);
 
-        vector2.setValue(0, 1.00001);
+        //vector2.setValue(0, 1.00001);
         System.out.println(vector1.equals(vector2));
-
-        Vector vector3 = new Vector(10, array);
+        double[] array1 = {1, 6, 8, 2, 4, 6, 8, 2, 7};
+        Vector vector3 = new Vector(array1);
         vector3.multiplication(2);
 
-        vector1.add(vector2);
+        //vector1.add(vector2);
 
-        vector1.revers();
+        //vector1.reverse();
 
-        vector1.remove(vector2);
+        //vector1.remove(vector2);
 
         vector1.setValue(vector1.getSize() - 1, 0);
-
+        System.out.println(vector1);
+        System.out.println(vector3);
+        vector3.add(vector1);
+        System.out.println(vector1);
+        System.out.println(vector3);
+        vector1.remove(vector3);
+        System.out.println(vector1);
     }
 }
