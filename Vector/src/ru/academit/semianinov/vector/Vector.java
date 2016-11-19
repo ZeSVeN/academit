@@ -96,25 +96,26 @@ class Vector {
         double sum = 0;
 
         for (double e : this.array) {
-            sum += Math.pow(e,2);
+            sum += Math.pow(e, 2);
         }
         return Math.sqrt(sum);
     }
 
     public void setValue(int index, double value) {
-        searchValue(index);
+        checkIndex(index);
         array[index] = value;
     }
 
-    private double searchValue(int index) {
+    private void checkIndex(int index) {
         if (index < 0 || array.length <= index) {
             throw new IndexOutOfBoundsException("Элемента с таким индексом не существует");
         }
-        return array[index];
     }
 
+
     public double getValue(int index) {
-        return searchValue(index);
+        checkIndex(index);
+        return array[index];
     }
 
     public static Vector sum(Vector vector1, Vector vector2) {
