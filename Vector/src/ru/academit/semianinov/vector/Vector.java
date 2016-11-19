@@ -1,7 +1,6 @@
 package ru.academit.semianinov.vector;
 
 import java.util.Arrays;
-import java.util.regex.Matcher;
 
 class Vector {
 
@@ -30,9 +29,7 @@ class Vector {
 
         this(size);
 
-        for (int i = 0; i < array.length; ++i) {
-            this.array[i] = array[i];
-        }
+        System.arraycopy(array, 0, this.array, 0, size);
     }
 
     public int getSize() {
@@ -56,12 +53,13 @@ class Vector {
         return string.toString();
     }
 
-    public void add(Vector vector) {
+    public void sum(Vector vector) {
         if (this.getSize() < vector.getSize()) {
 
-            Vector tmp = new Vector(vector.getSize(), this.array);
+            double[] tmp = new double[vector.getSize()];
+            System.arraycopy(this.array, 0, tmp, 0, this.array.length);
 
-            this.array = tmp.array;
+            this.array = tmp;
         }
 
         for (int i = 0; i < vector.getSize(); ++i) {
@@ -69,12 +67,13 @@ class Vector {
         }
     }
 
-    public void remove(Vector vector) {
+    public void sub(Vector vector) {
         if (this.getSize() < vector.getSize()) {
 
-            Vector tmp = new Vector(vector.getSize(), this.array);
+            double[] tmp = new double[vector.getSize()];
+            System.arraycopy(this.array, 0, tmp, 0, this.array.length);
 
-            this.array = tmp.array;
+            this.array = tmp;
         }
 
         for (int i = 0; i < vector.getSize(); ++i) {
@@ -92,20 +91,30 @@ class Vector {
         this.multiplication(-1);
     }
 
-    public double getLenght() {
-        return Math.abs(array[0] - array[array.length - 1]);
+    public double getLength() {
+
+        double sum = 0;
+
+        for (double e : this.array) {
+            sum += Math.pow(e,2);
+        }
+        return Math.sqrt(sum);
     }
 
     public void setValue(int index, double value) {
-        this.getValue(index);
+        searchValue(index);
         array[index] = value;
     }
 
-    public double getValue(int index) {
-        if (array.length <= Math.abs(index)) {
+    private double searchValue(int index) {
+        if (index < 0 || array.length <= index) {
             throw new IndexOutOfBoundsException("Элемента с таким индексом не существует");
         }
         return array[index];
+    }
+
+    public double getValue(int index) {
+        return searchValue(index);
     }
 
     public static Vector sum(Vector vector1, Vector vector2) {
@@ -114,8 +123,8 @@ class Vector {
 
         Vector vector = new Vector(vectorSize);
 
-        vector.add(vector1);
-        vector.add(vector2);
+        vector.sum(vector1);
+        vector.sum(vector2);
 
         return vector;
     }
@@ -126,8 +135,8 @@ class Vector {
 
         Vector vector = new Vector(vectorSize);
 
-        vector.add(vector1);
-        vector.remove(vector2);
+        vector.sum(vector1);
+        vector.sub(vector2);
 
         return vector;
     }
@@ -135,9 +144,10 @@ class Vector {
     public static double scalarProduct(Vector vector1, Vector vector2) {
 
         double result = 0;
+        int minVectorSize = Math.min(vector1.getSize(), vector2.getSize());
 
-        for (int i = 0; i < Math.min(vector1.getSize(), vector2.getSize()); ++i) {
-            result = result + vector1.getValue(i) * vector2.getValue(i);
+        for (int i = 0; i < minVectorSize; ++i) {
+            result += vector1.getValue(i) * vector2.getValue(i);
         }
         return result;
     }

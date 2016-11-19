@@ -19,15 +19,15 @@ public class Main {
         Vector vector3 = new Vector(array1);
         vector3.multiplication(2);
 
-        vector1.add(vector2);
+        vector1.sum(vector3);
 
         vector1.reverse();
 
-        vector1.remove(vector2);
+        vector1.sub(vector3);
 
-        vector1.setValue(0, 0);
+        vector1.setValue(8, 0);
 
-        vector3.add(vector1);
+        vector3.sum(vector1);
 
         System.out.println(Vector.sum(vector3, vector1));
         System.out.println(Vector.subtraction(vector1, vector1));
