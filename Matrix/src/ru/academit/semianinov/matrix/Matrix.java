@@ -1,4 +1,6 @@
-import java.util.Vector;
+package ru.academit.semianinov.matrix;
+
+import ru.academit.semianinov.vector.Vector;
 
 public class Matrix {
 
@@ -6,7 +8,7 @@ public class Matrix {
 
     private void validation(int size) {
         //TODO Сделать отдельные валидации для отрицательного значения и для выхода за границы массива
-        if (size < 0 || vector.length < size || vector[0].capacity() < size) {
+        if (size < 0 || vector.length < size || vector[0].getLength() < size) {
             throw new IndexOutOfBoundsException("Недопустимый размер матрицы");
         }
     }
@@ -27,9 +29,9 @@ public class Matrix {
 
     public Matrix(Matrix matrix) {
 
-        this(matrix.vector.length, matrix.vector[0].capacity());
+        this(matrix.vector.length, matrix.vector[0].getSize());
 
-        for (int i = 0; i < vector[0].capacity(); ++i) {
+        for (int i = 0; i < vector[0].getSize(); ++i) {
             System.arraycopy(matrix.vector, 0, this.vector, 0, matrix.vector.length);
         }
     }
@@ -39,7 +41,7 @@ public class Matrix {
     }
 
     public int getSize() {
-        return vector.length * vector[0].capacity();
+        return vector.length * vector[0].getSize();
     }
 
     public void setLine(int index, Vector vector) {
@@ -58,11 +60,12 @@ public class Matrix {
 
     public void transpose() {
 
-        int[][] transposeMatrix = new int[this.vector.length][this.vector[0].capacity()];
+        for (int i = 0; i < vector[0].getSize(); ++i) {
+            for (int j = i; j < vector.length; ++j) {
 
-        for (int i = 0; i < vector[0].capacity(); ++i) {
-            for (int j = 0; j < vector.length; ++j) {
-                transposeMatrix[j][i] = (int) this.vector[i].elementAt(j);
+                Vector tmpVector = new Vector(vector.length);
+                double tmp = this.vector[j].getValue(i);
+                tmpVector.setValue(j, tmp);
             }
         }
     }
