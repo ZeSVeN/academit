@@ -1,72 +1,143 @@
 package ru.academit.semianinov.matrix;
 
 import ru.academit.semianinov.vector.Vector;
+import ru.academit.semianinov.vector.LengthComparator;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Matrix {
 
-    private Vector[] vector;
+    private Vector[] row;
 
-    private void validation(int size) {
-        //TODO Сделать отдельные валидации для отрицательного значения и для выхода за границы массива
-        if (size < 0 || vector.length < size || vector[0].getLength() < size) {
+    private void validateSize(int size) {
+
+        if (size <= 0) {
             throw new IndexOutOfBoundsException("Недопустимый размер матрицы");
         }
     }
 
-    public Matrix(int n, int m) {
+    private void validateIndex(int index) {
 
-        validation(n);
-        validation(m);
+        if (row.length < index || row[0].getLength() < index) {
+            throw new IndexOutOfBoundsException("Выход за границы массива");
+        }
+    }
 
-        for (int i = 0; i <= m; ++i) {
-            this.vector[i] = new Vector(n);
+    public Matrix(int row, int column) {
+
+        validateSize(row);
+        validateSize(column);
+
+        this.row = new Vector[row];
+
+        for (int i = 0; i < row; ++i) {
+            this.row[i] = new Vector(column);
         }
     }
 
     public Matrix(double[][] array) {
-        this(array.length, array[0].length);
+
+        int maxLength = 0;
+
+        for (double[] e : array) {
+            if (maxLength < e.length) {
+                maxLength = e.length;
+            }
+        }
+
+        this.row = new Vector[array.length];
+
+        for (int i = 0; i < array.length; ++i) {
+            this.row[i] = new Vector(maxLength);
+            for (int j = 0; j < array[i].length; ++j) {
+                this.row[i].setValue(j, array[i][j]);
+            }
+        }
     }
 
     public Matrix(Matrix matrix) {
 
-        this(matrix.vector.length, matrix.vector[0].getSize());
+        this(matrix.row.length, matrix.row[0].getSize());
 
-        for (int i = 0; i < vector[0].getSize(); ++i) {
-            System.arraycopy(matrix.vector, 0, this.vector, 0, matrix.vector.length);
-        }
+        System.arraycopy(matrix.row, 0, this.row, 0, matrix.row.length);
+
     }
 
     public Matrix(Vector[] vector) {
-        this(new Matrix(vector));
+
+        List<Vector> vectorList = new ArrayList<>(Arrays.asList(vector));
+        Vector max = Collections.max(vectorList, new LengthComparator());
+
+        int maxLength = max.getSize();
+
+        this.row = new Vector[vector.length];
+
+        for (int i = 0; i < vector.length; ++i) {
+            row[i] = new Vector(maxLength);
+            row[i].sum(vector[i]);
+        }
     }
 
     public int getSize() {
-        return vector.length * vector[0].getSize();
+        return row.length * row[0].getSize();
     }
 
     public void setLine(int index, Vector vector) {
 
-        validation(index);
+        validateIndex(index);
 
-        this.vector[index] = vector;
+        for (int i = 0; i < vector.getLength(); ++i) {
+            row[index].setValue(i, vector.getValue(i));
+        }
     }
 
-    public String getLine(int index) {
+    public Vector getLine(int index) {
 
-        validation(index);
+        validateSize(index);
 
-        return vector[index].toString();
+        return row[index];
     }
 
     public void transpose() {
 
-        for (int i = 0; i < vector[0].getSize(); ++i) {
-            for (int j = i; j < vector.length; ++j) {
+        //Matrix tmpMatrix = new Matrix(this);
+        double[][] tmpArray = new double[row[0].getSize()][row.length];
 
-                Vector tmpVector = new Vector(vector.length);
-                double tmp = this.vector[j].getValue(i);
-                tmpVector.setValue(j, tmp);
+        for (int i = 0; i < row.length; ++i) {
+
+            for (int j = i; j < tmpArray[0].length; ++j) {
+                tmpArray[i][j] = this.row[j].getValue(i);
             }
+
+            //Vector tmpVector = new Vector(array);
+
+            //this.setLine(i, tmpVector);
         }
+
+
+        Matrix tmpMatrix = new Matrix(tmpArray);
+
+        for (int i = 0; i < row.length; ++i) {
+            setLine(i, tmpMatrix.getLine(i));
+        }
+    }
+
+    public String toString() {
+
+        StringBuilder string = new StringBuilder();
+
+        string.append("{");
+
+        for (Vector e : this.row) {
+            string.append(e.toString())
+                    .append(",");
+        }
+
+        string.delete(string.length() - 1, string.length());
+        string.append("}");
+        return string.toString();
     }
 }
