@@ -2,7 +2,7 @@ package ru.academit.semianinov.vector;
 
 import java.util.Arrays;
 
-class Vector {
+public class Vector {
 
     private double[] array;
 
