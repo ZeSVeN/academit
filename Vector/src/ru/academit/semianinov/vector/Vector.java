@@ -29,7 +29,7 @@ public class Vector {
 
         this(size);
 
-        System.arraycopy(array, 0, this.array, 0, size);
+        System.arraycopy(array, 0, this.array, 0, array.length);
     }
 
     public int getSize() {
